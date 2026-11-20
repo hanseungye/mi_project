@@ -1,0 +1,10 @@
+.book-cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;       /* 1024 x 1536 과 같은 비율 */
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--color-placeholder);
+}
+.book-cover--sm { max-width: 220px; }
+.book-cover--lg { max-width: 360px; }
