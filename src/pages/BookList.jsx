@@ -21,24 +21,49 @@ export default function BookList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    let active = true;
+ 
+useEffect(() => {
+  let active = true;
 
-    getBooks()
-      .then((data) => {
-        if (active) setBooks(data);
-      })
-      .catch((err) => {
-        if (active) setError(err.message);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
+  async function fetchBooks() {
+    try {
+      setLoading(true);
+      setError('');
 
-    return () => {
-      active = false;
-    };
-  }, []);
+      const data = await getBooks();
+
+      // API 응답이 배열인지 검사
+      if (!Array.isArray(data)) {
+        throw new Error('도서 목록 데이터가 배열이 아닙니다.');
+      }
+
+      // 컴포넌트가 활성화된 경우에만 업데이트
+      if (active) {
+        setBooks(data);
+      }
+    // 에러가 발생하면
+    } catch (error) {
+      if (active) {
+        setBooks([]);
+        setError(error.message || '도서 목록 조회에 실패했습니다.');
+      }
+    // 에러 화면나면 대체 state
+    } finally {
+      if (active) {
+        setLoading(false);
+      }
+    }
+  }
+
+  // 핵심: 함수를 실제로 호출
+  fetchBooks();
+
+  // 컴포넌트 언마운트 시 비활성화
+  return () => {
+    active = false;
+  };
+}, []);
+
 
   const filteredBooks = books.filter((book) =>
     `${book.title ?? ''} ${book.author ?? ''}`

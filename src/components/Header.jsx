@@ -22,16 +22,6 @@ export default function Header() {
           <SquareMenu size={18} />
           <span>내 서재</span>
         </NavLink>
-
-        {/* 도서 등록 */}
-        <NavLink
-          to="/books/new"
-          className="btn btn--primary"
-        >
-          <Plus size={18} />
-          <span>도서 등록</span>
-        </NavLink>
-
       </nav>
     </header>
   );
