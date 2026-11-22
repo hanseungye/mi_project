@@ -31,7 +31,7 @@ useEffect(() => {
       setError('');
 
       const data = await getBooks();
-
+      console.log(data);
       // API 응답이 배열인지 검사
       if (!Array.isArray(data)) {
         throw new Error('도서 목록 데이터가 배열이 아닙니다.');

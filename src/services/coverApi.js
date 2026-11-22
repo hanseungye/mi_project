@@ -1,10 +1,27 @@
-import { ApiError } from './bookApi';
 
-const OPENAI_IMAGE_URL = 'https://api.openai.com/v1/images/generations';
+export async function generateCoverImage({
+  prompt,
+  quality = 'low',
+}) {
+  const response = await fetch('/api/cover', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ prompt, quality }),
+  });
 
-// TODO(AI 담당): M5 힌트 TODO 1~5 구현
-// 반환: 'data:image/png;base64,...'  /  실패: ApiError (401, 429, 0, -1)
-export async function generateCoverImage({ apiKey, prompt, quality = 'low' }) {
-  void OPENAI_IMAGE_URL; void apiKey; void prompt; void quality;
-  throw new ApiError(-1, '아직 구현되지 않았습니다.');
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      data.error || 'AI 표지 생성에 실패했습니다.'
+    );
+  }
+
+  if (!data.imageDataUrl) {
+    throw new Error('생성된 이미지가 없습니다.');
+  }
+
+  return data.imageDataUrl;
 }
