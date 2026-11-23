@@ -1,122 +1,15 @@
-
-/* ===============================
-   도서 목록 메인 페이지
-================================ */
-
-.book-list {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 0 60px;
-}
-
-/* ===============================
-   도서 카드 그리드
-================================ */
-
-.book-list__grid {
-  display: grid;
-
-  /* 한 줄 최대 3개 */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  /* 카드 사이 간격 */
-  gap: 0.5rem;
-
-  align-items: stretch;
-}
-
-/* ===============================
-   MUI 카드 스타일
-================================ */
-
-.book-list__grid > .MuiCard-root {
-  min-width: 0;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  background: var(--color-surface);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-/* 마우스 올렸을 때 */
-.book-list__grid > .MuiCard-root:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
-}
-
-/* ===============================
-   책 카드 내부
-================================ */
-
-.book-list .book-card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  height: 100%;
-}
-
-/* 표지 크기 */
-.book-list .book-cover--sm {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: auto;
-  aspect-ratio: 2 / 3;
-  object-fit: cover;
-  border-radius: 6px;
-}
-
-/* 책 제목 */
-.book-list .book-card__title {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.5;
-
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* 저자 및 날짜 */
-.book-list .book-card__meta {
-  font-size: 12px;
-  color: var(--color-text-sub);
-  margin-top: auto;
-}
-
-/* ===============================
-   검색창
-================================ */
-
-.book-list .MuiTextField-root {
-  width: 280px;
-  max-width: 100%;
-}
-
-/* ===============================
-   반응형
-================================ */
-
-@media (max-width: 768px) {
-  .book-list {
-    padding: 16px 0 40px;
-  }
-
-  .book-list__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .book-list__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .book-list .MuiTextField-root {
-    width: 100%;
-  }
-}
+.book-list { width: 100%; max-width: 800px; margin: 0 auto; padding: 20px 0 60px; }
+.book-list__heading, .book-list__toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.book-list__heading { margin-bottom: 32px; }
+.book-list__heading h1 { margin: 0 0 8px; font-size: 26px; }
+.book-list__toolbar { margin-bottom: 24px; }
+.book-list__toolbar h2 { margin: 0; font-size: 17px; }
+.book-list__search { width: 280px; max-width: 100%; }
+.book-list__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+.book-list__item { min-width: 0; padding: 12px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-surface); box-shadow: 0 2px 6px rgba(0,0,0,.04); transition: transform .2s ease, box-shadow .2s ease; }
+.book-list__item:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+.book-list .book-cover--sm { display: block; width: 100%; max-width: none; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 6px; }
+.book-list .book-card__title { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.book-list .book-card__meta { margin-top: auto; }
+@media(max-width:768px) { .book-list { padding: 16px 0 40px; } .book-list__grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:480px) { .book-list__grid { grid-template-columns: minmax(0,1fr); } .book-list__search { width: 100%; } }

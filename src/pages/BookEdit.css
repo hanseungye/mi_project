@@ -1,1 +1,2 @@
-/* BookEdit 페이지 전용 스타일 — 클래스는 .book-edit 로 시작 */
+.book-edit { max-width: 760px; margin: 0 auto; }
+.book-edit h1 { margin: 0 0 8px; font-size: 26px; }

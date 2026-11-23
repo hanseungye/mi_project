@@ -1,1 +1,7 @@
-/* AI 표지 생성 모달 전용 — 클래스는 .cover-generator 로 시작 */
+.cover-generator { display: flex; flex-direction: column; gap: 24px; }
+.cover-generator h3 { margin: 0 0 8px; }
+.cover-generator__preview { min-height: 280px; background: var(--color-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 16px; }
+.cover-generator__image { width: 100%; max-width: 280px; aspect-ratio: 2 / 3; object-fit: contain; }
+.cover-generator__actions { display: flex; gap: 16px; }
+.cover-generator__actions .btn { flex: 1; }
+@media(max-width:480px) { .cover-generator__actions { flex-direction: column; } }
